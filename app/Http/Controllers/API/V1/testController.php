@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\testRequest;
+use App\Http\Resources\TestResource;
 use App\Models\testModel;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,22 +18,16 @@ class testController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'title index' => 'hawow',
-            'body index' => 'hawow po tao pew'
-        ]);
+        return TestResource::collection(testModel::all());
     }
 
     /**
      * http post /{route}
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(testRequest $request)
     {
-        $data = $request->validate([
-            'title' => 'required|string|max:10|min:2',
-            'body' => 'required|string|min:10|max:20'
-        ]);
+        $data = $request->validated();
 
         $data['author_id'] = 3;
 
@@ -44,12 +40,10 @@ class testController extends Controller
      * http get /{route}/{id}
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(testModel $posting)
     {
-        $data = User::all()->toArray();
-        $data2 = testModel::all()->toArray();
 
-        return response()->json(array_merge($data, $data2), 201);
+        return response()->json(new TestResource($posting), 200);
     }
 
     /**
@@ -60,10 +54,10 @@ class testController extends Controller
     {
         $data = $request->validate([
             'title' => 'required|string|max:10|min:2',
-            'body' => 'requried|string|min:10|max:20'
+            'body' => 'required|string|min:10|max:20'
         ]);
 
-        return $data;
+        return response()->json($data, 201);
     }
 
     /**
