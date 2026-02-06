@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\testRequest;
 use App\Http\Resources\TestResource;
+use App\Http\Resources\UserResource;
 use App\Models\testModel;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class testController extends Controller
      */
     public function index()
     {
-        return TestResource::collection(testModel::all());
+        return UserResource::collection(User::with("TestModel")->get());
     }
 
     /**
