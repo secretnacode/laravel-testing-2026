@@ -8,8 +8,13 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
-class AuthenticatedSessionController extends Controller
+class LoginController extends Controller
 {
+    // public function index()
+    // {
+    //     return "hawow";
+    // }
+
     /**
      * Handle an incoming authentication request.
      */
