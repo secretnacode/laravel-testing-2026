@@ -28,8 +28,8 @@ class testRequest extends FormRequest
         // this will automatically fired up if this instance was called
         // this is for the validation
         return [
-            'title' => 'required|string|max:10|min:2',
-            'body' => 'required|string|min:10|max:20'
+            'title' => 'required|string|max:20|min:2',
+            'body' => 'required|string|min:10|max:100'
         ];
     }
 
