@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\testController as V1TestController;
+use App\Http\Controllers\ImageGenerationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -11,6 +12,9 @@ Route::middleware(["auth:sanctum", "throtle:api"])->group(function () {
 
     Route::prefix("v1")->group(function () {
         Route::apiResource("post", V1TestController::class);
+
+        Route::apiResource("image_generation", ImageGenerationController::class)
+            ->only(["index", "store"]);
     });
 });
 

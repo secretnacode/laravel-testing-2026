@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(testModel::class, "author_id");
     }
+
+    public function image_generation()
+    {
+        return $this->hasMany(ImageGeneration::class, "user_id");
+    }
 }
